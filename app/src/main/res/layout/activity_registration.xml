@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="regis"
+            type="com.formlivedata.registration.RegistrationViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/Widget.MaterialComponents.Toolbar.Primary"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="16dp"
+            android:gravity="center_vertical"
+            tools:context=".registration.RegistrationActivity">
+
+            <!-- input email -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:hint="@string/label_email"
+                app:errorEnabled="true"
+                app:errorText="@{regis.errorEmail}">
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/white"
+                    android:inputType="textEmailAddress"
+                    android:imeOptions="actionNext"
+                    android:text="@={regis.email}"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- input password -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/textInputEmail"
+                android:layout_marginBottom="16dp"
+                android:hint="@string/label_password"
+                app:errorEnabled="true"
+                app:errorText="@{regis.errorPassword}">
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/white"
+                    android:imeOptions="actionDone"
+                    android:inputType="textPassword"
+                    android:text="@={regis.password}" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- input password confirmation -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputPasswordConfirmation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:layout_below="@id/textInputPassword"
+                android:hint="@string/label_confirm_password"
+                app:errorEnabled="true"
+                app:errorText="@{regis.errorPassConfirm}">
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/white"
+                    android:imeOptions="actionDone"
+                    android:inputType="textPassword"
+                    android:text="@={regis.passwordConfirm}" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- button login -->
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/textInputPasswordConfirmation"
+                android:minHeight="60dp"
+                android:text="@string/button_regis"
+                android:enabled="@{regis.isValid}"
+                android:onClick="@{regis::clickLogin}"/>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</layout>
